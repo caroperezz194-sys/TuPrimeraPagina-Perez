@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href= {% url "inicio" %} >Inicio</a>
+        <a href={% url "crear_producto" %} >Crear Producto</a>
+        <a href={% url "listado_productos" %} >Productos</a>
+
+    <nav>
+    
+    
+<h1>Listado de productos</h1>
+
+<ul>
+    {% for producto in listado_productos %}
+        <li>{{ producto }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
