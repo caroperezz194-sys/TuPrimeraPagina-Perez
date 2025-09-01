@@ -4,18 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+<style>
+    nav {
+        margin: 20px 0;
+    }
+
+    nav .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 10px;
+        background-color: #f862adff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+
+    nav .btn:hover {
+        background-color: #8b0850ff; 
+    }
+</style>
+
+
 </head>
+
+
 <body>
 
-   <nav>
-        <a href= {% url "inicio" %} >Inicio</a>
-        <a href={% url "crear_producto" %} >Crear Producto</a>
-        <a href={% url "listado_productos" %} >Productos</a>
-        
+  <nav>
+    <a href="{% url 'inicio' %}" class="btn">Inicio</a>
+    <a href="{% url 'crear_producto' %}" class="btn">Crear Producto</a>
+    <a href="{% url 'listado_productos' %}" class="btn">Ver y Borrar Productos</a>
+</nav>
 
-    </nav>
 
 <h1>HOLA SOY MI PRIMERA VISTA</h1>
+
+
 
 </body>
 </html>

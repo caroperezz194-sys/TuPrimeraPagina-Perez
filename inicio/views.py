@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from inicio.models import Producto
 from inicio.forms import FormularioCreacionProducto
+from django.shortcuts import get_object_or_404
+
 
 def inicio(request):
     return render(request, 'inicio/inicio.html')
@@ -29,3 +30,16 @@ def listado_productos(request):
     productos = Producto.objects.all()
     
     return render(request, 'inicio/listado_productos.html', {'listado_productos': productos})
+
+
+def borrar_producto(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    producto.delete()
+    return redirect("listado_productos")
+
+
+
+
+
+
+
