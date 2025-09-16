@@ -1,33 +1,36 @@
 {% extends "base.html" %}
 
 
-{% block title %}Crear Producto{% endblock %}
+{% block title %}Actualizar Producto{% endblock %}
 
 
 {% block content %}
 
 
+    <h1>Actualizar producto</h1>
 
-    <h1>Formulario de creación</h1>
-
-    <form action="{% url 'crear_producto' %}" method="POST">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div>
             <label for="id_nombre">Nombre del producto:</label><br>
-            {{ formulario.nombre }}
+            {{ form.nombre }}
         </div><br>
         <div>
             <label for="id_precio">Precio:</label><br>
-            {{ formulario.precio }}
+            {{ form.precio }}
         </div><br>
         <div>
             <label for="id_descripcion">Descripción:</label><br>
-            {{ formulario.descripcion }}
+            {{ form.descripcion }}
         </div><br>
-         <div>
-        <input type="submit" value="Crear">
+        <div>
+            <input type="submit" value="Actualizar" class='btn'>
         </div>
 
     </form>
+
 {% endblock %}
+
+
+    

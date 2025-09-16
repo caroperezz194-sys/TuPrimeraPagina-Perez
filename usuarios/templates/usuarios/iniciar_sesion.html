@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+
+{% block content %}
+  <h1>Iniciar Sesión</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div style="color: green; font-weight: bold; margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+  <form action="{% url 'iniciar_sesion' %}" method="POST">
+      {% csrf_token %}
+
+
+      <!-- Aquí se muestran los errores generales (como usuario/contraseña inválidos) -->
+      {% if formulario.non_field_errors %}
+          <div style="color: red; font-weight: bold; margin-bottom: 10px;">
+              {{ formulario.non_field_errors }}
+          </div>
+      {% endif %}
+
+
+      <div>
+          <label for="id_username">Usuario:</label>
+          {{ formulario.username }}
+      </div><br>
+
+
+      <div>
+          <label for="id_password">Contraseña:</label>
+          {{ formulario.password }}
+      </div><br>
+
+
+      <input type="submit" value="Iniciar sesión" class="btn">
+  </form>
+{% endblock %}

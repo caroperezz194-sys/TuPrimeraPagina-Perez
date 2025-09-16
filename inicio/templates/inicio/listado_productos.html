@@ -1,50 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% extends "base.html" %}
 
-<style>
-    nav {
-        margin: 20px 0;
-    }
 
-    nav .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        margin-right: 10px;
-        background-color: #f862adff;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        transition: background 0.3s ease;
-    }
+{% block title %}Listado de Productos{% endblock %}
 
-    nav .btn:hover {
-        background-color: #8b0850ff; 
-    }
-</style>
 
-</head>
-<body>
-    <nav>
-    <a href="{% url 'inicio' %}" class="btn">Inicio</a>
-    <a href="{% url 'crear_producto' %}" class="btn">Crear Producto</a>
-    <a href="{% url 'listado_productos' %}" class="btn">Ver y Borrar Productos</a>
-</nav>
+{% block content %}
+
     
-<h1>Listado de productos</h1>
+    <h1>Listado de productos</h1>
 
-<ul>
-    {% for producto in listado_productos %}
+    {% if listado_productos %}
+        <form method="post" id="productoForm">
+            {% csrf_token %}
+
+            <ul>
+             {% for producto in listado_productos %}
+                <li>
+                    <input type="radio" name="producto_id" value="{{ producto.id }}">
+                    Nombre: {{ producto.nombre }} - Precio: {{ producto.precio }}
+
+                </li>
+            {% endfor %}
+        </ul>
+        <div style="margin-top: 20px;">
+          <button type="button" class="btn btn-detalle" onclick="submitForm('detalle')">Detalle</button>
+          <button type="button" class="btn btn-eliminar" onclick="submitForm('eliminar')">Eliminar</button>
+          <button type="button" class="btn btn-actualizar" onclick="submitForm('actualizar')">Actualizar</button>
+        </div>
+    </form>
+
+    <script>
+    function submitForm(action) {
+        const selected = document.querySelector('input[name="producto_id"]:checked');
+        if (!selected) {
+            alert("Por favor selecciona un producto primero.");
+            return;
+        }
+        const productoId = selected.value;
+
+
+        let url = "";
+        if (action === "detalle") {
+            url = `{% url 'detalle_producto' 0 %}`.replace("0", productoId);
+        } else if (action === "eliminar") {
+            url = `{% url 'eliminar_producto' 0 %}`.replace("0", productoId);
+        } else if (action === "actualizar") {
+            url = `{% url 'actualizar_producto' 0 %}`.replace("0", productoId);
+        }
+
+
+        window.location.href = url;
+    }
+    </script>
+
+
+  {% else %}
+    <p><strong>No hay productos</strong></p>
+  {% endif %}
+{% endblock %}
+
+
+
+{% comment %} {% for producto in listado_productos %}
         <li>
             {{ producto }}
             <a href="{% url 'borrar_producto' producto.id %}">Borrar</a>
         </li>
-    {% endfor %}
-</ul>
-
-</body>
-</html>
+    {% endfor %} {% endcomment %}

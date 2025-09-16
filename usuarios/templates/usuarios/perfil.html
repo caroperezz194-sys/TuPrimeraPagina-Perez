@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+    <h1>Perfil</h1>
+    <a href="{% url 'editar_perfil' %}" class="btn">Editar perfil</a>
+    <a href="{% url 'editar_contrasenia' %}" class="btn">Editar contraseña</a>
+{% endblock %}

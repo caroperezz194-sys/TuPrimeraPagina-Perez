@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block title %}Editar perfil{% endblock %}
+
+
+{% block content %}
+  <h1>Editar contrasenia</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div style="color: green; font-weight: bold; margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+   
+
+<form action="{% url 'editar_contrasenia' %}" method="POST">
+    {% csrf_token %}
+
+    <div>
+          {{ form.old_password.label_tag }}<br>
+          {{ form.old_password }}
+      </div><br>
+
+      <div>
+          {{ form.new_password1.label_tag }}<br>
+          {{ form.new_password1 }}
+      </div><br>
+
+      <div>
+          {{ form.new_password2.label_tag }}<br>
+          {{ form.new_password2 }}
+      </div><br>
+
+    <input type="submit" value="Editar" class="btn">
+</form>
+
+{% endblock %}

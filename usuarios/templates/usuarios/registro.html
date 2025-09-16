@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block title %}Registro{% endblock %}
+
+
+{% block content %}
+
+    <h1>Registro</h1>
+
+    <form action="{% url 'registro' %}" method="POST">
+        
+    {% csrf_token %}
+
+    <div>
+        {{ formulario.username.label_tag }}<br>
+        {{ formulario.username }}
+        {% for error in formulario.username.errors %}
+            <div style="color: red;">{{ error }}</div>
+        {% endfor %}
+    </div><br>
+
+    <div>
+        {{ formulario.email.label_tag }}<br>
+        {{ formulario.email }}
+        {% for error in formulario.email.errors %}
+            <div style="color: red;">{{ error }}</div>
+        {% endfor %}
+    </div><br>
+
+    <div>
+        {{ formulario.password1.label_tag }}<br>
+        {{ formulario.password1 }}
+        {% for error in formulario.password1.errors %}
+            <div style="color: red;">{{ error }}</div>
+        {% endfor %}
+    </div><br>
+
+    <div>
+        {{ formulario.password2.label_tag }}<br>
+        {{ formulario.password2 }}
+        {% for error in formulario.password2.errors %}
+            <div style="color: red;">{{ error }}</div>
+        {% endfor %}
+    </div><br>
+
+        <input type="submit" value="Registrarse" class = 'btn'>
+        </div>
+
+    </form>
+{% endblock %}

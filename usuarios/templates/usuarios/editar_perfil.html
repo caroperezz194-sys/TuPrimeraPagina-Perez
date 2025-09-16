@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block title %}Editar perfil{% endblock %}
+
+
+{% block content %}
+  <h1>Editar perfil</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div style="color: green; font-weight: bold; margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+   
+
+<form action="{% url 'editar_perfil' %}" method="POST">
+    {% csrf_token %}
+
+    <div>
+        {{ formulario.email.label_tag }}<br>
+        {{ formulario.email }}
+    </div><br>
+
+    <div>
+        {{ formulario.first_name.label_tag }}<br>
+        {{ formulario.first_name }}
+    </div><br>
+
+    <div>
+        {{ formulario.last_name.label_tag }}<br>
+        {{ formulario.last_name }}
+    </div><br>
+
+    <input type="submit" value="Editar" class="btn">
+</form>
+
+{% endblock %}

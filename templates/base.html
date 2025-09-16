@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi sitio{% endblock %}</title>
+
+
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-right: 8px;
+            background-color: #f862adff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;              /* quita el borde feo por defecto */
+            cursor: pointer;           /* hace que el mouse sea como en botones */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);  /* sombra para efecto de botón */
+            transition: background 0.3s ease, transform 0.1s ease;
+        }
+
+
+        .btn:hover {
+            background-color: #8b0850ff;
+            transform: scale(1.05);  /* efecto "crece" al pasar el mouse */
+        }
+
+
+
+
+        input.btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: #f862adff;
+            color: white;
+            cursor: pointer;
+        }
+
+
+        /* Colores específicos */
+        .btn-detalle {
+            background-color: #3498db; /* azul */
+        }
+        .btn-detalle:hover {
+            background-color: #21618c;
+        }
+
+
+        .btn-eliminar {
+            background-color: #e74c3c; /* rojo */
+        }
+        .btn-eliminar:hover {
+            background-color: #922b21;
+        }
+
+
+        .btn-actualizar {
+            background-color: #5aec3d; /* naranja */
+        }
+        .btn-actualizar:hover {
+            background-color: #0c8a08;
+        }
+
+
+        .sobre-mi {
+        background-color: #fff0f5;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 800px;
+        margin: 30px auto;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        }
+
+
+        .sobre-mi h1 {
+            color: #f862adff;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+
+        .sobre-mi h2 {
+            color: rgb(0, 0, 0);
+            font-size: 25px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+
+        .sobre-mi p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+
+  <nav>
+    <a href="{% url 'inicio' %}" class="btn">Inicio</a>
+    <a href="{% url 'sobremi' %}" class="btn">Sobre Mi</a>
+    <a href="{% url 'crear_producto' %}" class="btn">Crear Producto</a>
+    <a href="{% url 'listado_productos' %}" class="btn">Ver Productos</a>
+   
+    {% if request.user.is_authenticated %}
+        <a href="{% url "perfil" %}" class="btn">{{ request.user.username }}</a>
+
+
+        <form action="{% url 'cerrar_sesion' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <input type="submit" value="Cerrar sesión" class="btn">
+        </form>
+    {% else %}
+        <a href="{% url 'iniciar_sesion' %}" class="btn">Iniciar Sesión</a>
+        <a href="{% url 'registro' %}" class="btn">Registrarse</a>
+    {% endif %}
+</nav>
+
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+
+</body>
+</html>
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    nav {
+        margin: 20px 0;
+    }
+
+    nav .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 10px;
+        background-color: #f862adff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+
+    nav .btn:hover {
+        background-color: #8b0850ff;
+    }
+</style>
+
+</head>
+<body>
+
+   <nav>
+        <a href="{% url 'inicio' %}" class="btn">Inicio</a>
+        <a href="{% url 'crear_producto' %}" class="btn">Crear Producto</a>
+        <a href="{% url 'listado_productos' %}" class="btn">Ver Productos</a>
+        
+
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'cerrar_sesion' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="submit" value="Cerrar sesión" class="btn">
+            </form>
+        {% else %}
+            <a href="{% url 'iniciar_sesion' %}" class="btn">Iniciar Sesión</a>
+        {% endif %}
+    
+    </nav>
+
+</body>
+</html> {% endcomment %}
