@@ -5,32 +5,34 @@
 
 
 {% block content %}
+  <h1>Actualizar producto</h1>
 
 
-    <h1>Actualizar producto</h1>
-
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <div>
-            <label for="id_nombre">Nombre del producto:</label><br>
-            {{ form.nombre }}
-        </div><br>
-        <div>
-            <label for="id_precio">Precio:</label><br>
-            {{ form.precio }}
-        </div><br>
-        <div>
-            <label for="id_descripcion">Descripción:</label><br>
-            {{ form.descripcion }}
-        </div><br>
-        <div>
-            <input type="submit" value="Actualizar" class='btn'>
-        </div>
-
-    </form>
-
+  <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div>
+          <label for="id_nombre">Nombre del producto:</label><br>
+          {{ form.nombre }}
+      </div><br>
+      <div>
+          <label for="id_precio">Precio:</label><br>
+          {{ form.precio }}
+      </div><br>
+      <div>
+          <label for="id_descripcion">Descripción:</label><br>
+          {{ form.descripcion }}
+      </div><br>
+      <div>
+          <label for="id_imagen">Imagen:</label><br>
+          {{ form.imagen }}
+      </div><br>
+      <div>
+          <input type="submit" value="Actualizar" class = 'btn'>
+          <a href="{% url 'listado_productos' %}" class="btn btn-volver">Volver al listado</a>
+      </div><br>
+  </form>
 {% endblock %}
+
 
 
     

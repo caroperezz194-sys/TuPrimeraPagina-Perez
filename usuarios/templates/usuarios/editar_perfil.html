@@ -7,6 +7,7 @@
 {% block content %}
   <h1>Editar perfil</h1>
 
+
     {% if messages %}
         {% for message in messages %}
             <div style="color: green; font-weight: bold; margin-bottom: 10px;">
@@ -15,27 +16,47 @@
         {% endfor %}
     {% endif %}
 
-   
 
 <form action="{% url 'editar_perfil' %}" method="POST">
     {% csrf_token %}
+
 
     <div>
         {{ formulario.email.label_tag }}<br>
         {{ formulario.email }}
     </div><br>
 
+
     <div>
         {{ formulario.first_name.label_tag }}<br>
         {{ formulario.first_name }}
     </div><br>
+
 
     <div>
         {{ formulario.last_name.label_tag }}<br>
         {{ formulario.last_name }}
     </div><br>
 
+
+    <h2>Cambiar avatar</h2>
+    <div style="display: flex; gap: 20px;">
+        {% for value, label in avatar_form.fields.avatar.choices %}
+            <label style="text-align: center;">
+                <input type="radio" name="avatar" value="{{ value }}"
+                    {% if avatar_form.initial.avatar == value %}checked{% endif %}>
+                <br>
+                <img src="/media/avatars/{{ value }}" width="100" style="border-radius: 10px;">
+                <br>{{ label }}
+            </label>
+        {% endfor %}
+
+
+    </div><br>
+   
     <input type="submit" value="Editar" class="btn">
+    <a href="{% url 'perfil' %}" class="btn btn-volver">Volver al perfil</a>
 </form>
+
 
 {% endblock %}

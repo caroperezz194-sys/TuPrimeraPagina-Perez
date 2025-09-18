@@ -9,3 +9,7 @@ class FormularioCreacionProducto(forms.Form):
         max_length=1000,        # límite de caracteres (puedes ajustar)
         label='Descripción'
     )
+    imagen = forms.ImageField(  
+        required=False,          
+        label='Imagen del producto'
+    )

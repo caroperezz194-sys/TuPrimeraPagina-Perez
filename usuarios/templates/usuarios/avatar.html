@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block title %}Avatar{% endblock %}
+
+
+{% block content %}
+
+
+    <h1>Elige tu avatar</h1>
+
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Elegir Avatar</button>
+    </form>
+
+
+    <h2>Vista previa de los avatares:</h2>
+    <div style="display: flex; gap: 20px;">
+        {% for value, label in form.fields.avatar.choices %}
+            <label style="text-align: center;">
+                <input type="radio" name="avatar" value="{{ value }}">
+                <br>
+                <img src="{{ MEDIA_URL }}avatars/{{ value }}" width="100" style="border-radius: 10px;">
+                <br>{{ label }}
+            </label>
+        {% endfor %}
+    </div>
+{% endblock %}

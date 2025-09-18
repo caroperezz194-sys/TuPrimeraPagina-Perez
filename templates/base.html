@@ -65,8 +65,15 @@
         .btn-actualizar:hover {
             background-color: #0c8a08;
         }
+            
+        .btn-volver {
+            background-color: #888888;
+        }
+        .btn-volver:hover {
+            background-color: #505152;
+        }
 
-
+        
         .sobre-mi {
         background-color: #fff0f5;
         padding: 30px;
@@ -113,7 +120,7 @@
     <a href="{% url 'listado_productos' %}" class="btn">Ver Productos</a>
    
     {% if request.user.is_authenticated %}
-        <a href="{% url "perfil" %}" class="btn">{{ request.user.username }}</a>
+        <a href="{% url "perfil" %}" class="btn">Ver perfil: {{ request.user.username }}</a>
 
 
         <form action="{% url 'cerrar_sesion' %}" method="post" style="display:inline;">

@@ -6,11 +6,14 @@
 
 {% block content %}
 
+
     <h1>Registro</h1>
 
+
     <form action="{% url 'registro' %}" method="POST">
-        
+       
     {% csrf_token %}
+
 
     <div>
         {{ formulario.username.label_tag }}<br>
@@ -20,6 +23,21 @@
         {% endfor %}
     </div><br>
 
+
+    <div>
+        {{ formulario.first_name.label_tag }}<br>
+        {{ formulario.first_name}}
+        <small style="color: gray;">Opcional</small>
+    </div><br>
+
+
+    <div>
+        {{ formulario.last_name.label_tag }}<br>
+        {{ formulario.last_name}}
+        <small style="color: gray;">Opcional</small>
+    </div><br>
+
+
     <div>
         {{ formulario.email.label_tag }}<br>
         {{ formulario.email }}
@@ -27,6 +45,7 @@
             <div style="color: red;">{{ error }}</div>
         {% endfor %}
     </div><br>
+
 
     <div>
         {{ formulario.password1.label_tag }}<br>
@@ -36,6 +55,7 @@
         {% endfor %}
     </div><br>
 
+
     <div>
         {{ formulario.password2.label_tag }}<br>
         {{ formulario.password2 }}
@@ -44,8 +64,27 @@
         {% endfor %}
     </div><br>
 
-        <input type="submit" value="Registrarse" class = 'btn'>
-        </div>
+
+    <h2 style="display: inline;">Elige tu avatar</h2>
+    <div style="display: flex; gap: 20px;">
+        {% for value, label in avatar_form.fields.avatar.choices %}
+            <label style="text-align: center;">
+                <input type="radio" name="avatar" value="{{ value }}" {% if not avatar_form.initial.avatar %}checked{% endif %}>
+                <br>
+                <img src="/media/avatars/{{ value }}" width="100" style="border-radius: 10px;">
+                <br>{{ label }}
+            </label>
+        {% endfor %}
+    </div><br>
+
+
+    <input type="submit" value="Registrarse" class = 'btn'>
+    </div>
+
+
+
 
     </form>
 {% endblock %}
+
+

@@ -56,8 +56,27 @@
         - heredan de `forms.Form`
         - los atributos los completan con los Fields que les brinda `forms` ejemplo `forms.CharField(max_length=20)` (`****`)
     3. importar el formulario creado en el views.py que corresponda para utilizarlo en las vistas
+22. para manipular productos se crean las vistas para
+    - crear nuevos productos
+    - ver la lista creada
+    - ver el detalle por producto
+    - editar y eliminar un producto 
+Para ello se empleó un mixin con el comando LoginRequiredMixin en las clases basadas en vistas
+23. para manipular usuarios se crean las vistas para
+    - registrar nuevos usuarios
+    - perfil creado
+    - editar nombre, apellido, email y avatar 
+    - editar la contraseña
+Para ello se empleó un decorador con el comando @login_required.
+24. para manipular imagenes
+    - instalar pillow con el manejador de paquetes de python pip con el comando pip install Pillow
+    - agregamos los valores MEDIA_URL = '/media/' y MEDIA_ROOT = os.path.join(BASE_DIR, 'media') en el archivo settings.py
+    - se crea carpeta "media" con: 
+        1.  Carpeta "productos" que contiene las imagenes que carga el usuario al crear un producto
+        2.  Carpeta "avatars" que contiene las imagenes de los avatar que puede elegir el usuario
+
 
 (`*`) En caso de no utilizar entorno virtual omitir este paso  
 (`**`) Este paso se debe repetir tras cada instalacion de paquetes para mantener la informacion actualizada  
 (`***`) No olvidar el punto al final para que les genere el proyecto donde estan parados y no se creen carpetas de mas  
-(`****`) Como veran es muy similar a lo que se hace en los modelos (no es exactamente igual para todo)  
+(`****`) Como veran es muy similar a lo que se hace en los modelos (no es exactamente igual para todo)

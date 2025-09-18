@@ -38,7 +38,6 @@
         }
         const productoId = selected.value;
 
-
         let url = "";
         if (action === "detalle") {
             url = `{% url 'detalle_producto' 0 %}`.replace("0", productoId);
@@ -47,7 +46,6 @@
         } else if (action === "actualizar") {
             url = `{% url 'actualizar_producto' 0 %}`.replace("0", productoId);
         }
-
 
         window.location.href = url;
     }
@@ -61,9 +59,3 @@
 
 
 
-{% comment %} {% for producto in listado_productos %}
-        <li>
-            {{ producto }}
-            <a href="{% url 'borrar_producto' producto.id %}">Borrar</a>
-        </li>
-    {% endfor %} {% endcomment %}

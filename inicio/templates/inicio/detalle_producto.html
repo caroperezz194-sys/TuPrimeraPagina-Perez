@@ -5,20 +5,16 @@
 
 
 {% block content %}
-
-
-<h1>Detalle del producto {{ producto.nombre }}</h1>
-
-<ul>
-    <li>Nombre : {{ producto.nombre }}
-    </li>
-    <li>Precio : {{ producto.precio }}
-    </li>
-     <li>Descripción : {{ producto.descripcion }}
-    </li>
-
-</ul>
-
+  <h2>Detalle del producto {{ producto.nombre }}</h2>
+  <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+  <p><strong>Precio:</strong> {{ producto.precio }}</p>
+  <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+  {% if producto.imagen %}
+      <p><strong>Imagen:</strong><br>
+      <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="200"></p>
+  {% endif %}
+  <a href="{% url 'listado_productos' %}" class="btn">Volver al listado</a>
 {% endblock %}
+
 
 
