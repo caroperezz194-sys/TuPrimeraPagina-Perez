@@ -27,15 +27,15 @@ def registro(request):
 
 
         if formulario.is_valid() and avatar_form.is_valid():
-            user = formulario.save(commit=False)  # No guarda todavía
-            # Guardar los campos opcionales
+            user = formulario.save(commit=False)  
+            
             user.first_name = formulario.cleaned_data.get('first_name', '')
             user.last_name = formulario.cleaned_data.get('last_name', '')
             user.email = formulario.cleaned_data.get('email', '')
-            user.save()  # Ahora sí se guarda todo
+            user.save()  
 
 
-            # Crear perfil con avatar manualmente
+            
             from .models import Profile
             Profile.objects.create(user=user, avatar=avatar_form.cleaned_data['avatar'])
 
@@ -60,7 +60,7 @@ def perfil(request):
 
 @login_required
 def editar_perfil(request):
-    profile = request.user.profile  # Obtenemos el perfil del usuario
+    profile = request.user.profile 
 
 
     if request.method == "POST":
@@ -70,9 +70,9 @@ def editar_perfil(request):
         if formulario.is_valid() and avatar_form.is_valid():
             formulario.save()
            
-            # Actualizar avatar del perfil
+            
             avatar = avatar_form.cleaned_data.get('avatar')
-            if avatar:  # opcional
+            if avatar:  
                 profile.avatar = avatar
                 profile.save()
            
@@ -80,7 +80,7 @@ def editar_perfil(request):
             return redirect('perfil')
     else:
         formulario = EditarPerfil(instance=request.user)
-        avatar_form = AvatarForm(initial={'avatar': profile.avatar})  # Valor inicial
+        avatar_form = AvatarForm(initial={'avatar': profile.avatar}) 
 
 
     return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario,'avatar_form': avatar_form,'profile': profile})
